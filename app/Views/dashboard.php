@@ -4,7 +4,7 @@
         CONTENT
     </div>
     <h3 class="h3">Wochenstatistik in Stunden</h3>
-    <div id="hour-per-week" class="mt-2 mb-2 px-2 py-4 border rounded">
+    <div id="hour-per-week" class="mt-2 mb-4 px-2 py-4 border rounded">
         CONTENT
     </div>
 </div>
