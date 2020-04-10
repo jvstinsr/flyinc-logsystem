@@ -4,5 +4,8 @@
         - Alle Rechte vorbehalten</span>
 </footer>
 <script src="js/meta.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script src="js/chart.js"></script>
+
 </body>
 </html>
