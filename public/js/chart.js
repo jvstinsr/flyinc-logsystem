@@ -16,14 +16,14 @@ function returnUserData(member, key) {
     return user[member][key];
 }
 
-var data = [];
 
 function setData() {
+    var data = [];
     for (var i in user) {
         var object = {
             data : [returnUserData(i, 'von'), 11,12,13,14,15,16,17,18],
             label: returnUserData(i, 'name'),
-            borderColor: '#000',
+            borderColor: getRandomColor(),
             fill: false
         };
         data.push(object);
@@ -65,10 +65,6 @@ new Chart(document.getElementById("canvas"), {
 
     },
     options: {
-        title: {
-            display: true,
-            text: 'World population per region (in millions)'
-        },
         scales: {
             yAxes: [{
                 display: true,
@@ -83,3 +79,15 @@ new Chart(document.getElementById("canvas"), {
         }
     }
 });
+
+//TODO: auslagern
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
