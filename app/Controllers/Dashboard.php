@@ -8,7 +8,12 @@ class Dashboard extends BaseController
 	        'title' => 'Dashboard' . TITLE
         ];
 
+	    $data = [
+	        'active' => DASHBOARD
+        ];
+
 		echo view('header', $title);
+		echo view('dashboard', $data);
 		echo view('navbar');
 		echo view('footer');
 	}
