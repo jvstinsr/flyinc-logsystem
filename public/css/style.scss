@@ -3,6 +3,11 @@ $primary: #2c3e50;
 .bg-primary {
   background-color: $primary !important;
 }
+
+.text-primary {
+  color: $primary !important;
+}
+
 .navbar-dark .navbar-brand {
   color: #fff !important;
 }
