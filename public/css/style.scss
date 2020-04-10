@@ -1,0 +1,238 @@
+@import url(https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&display=swap);
+
+@keyframes scroll {
+  0% {
+    opacity: 0;
+  }
+
+  10% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+}
+
+:root {
+  --primary:#b33939;
+  --secondary:#ff5252;
+  --light-grey:#fafafa;
+}
+
+body {
+  background-image: url(../img/men.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 30rem;
+  background-position: bottom left;
+}
+
+.text-primary, a {
+  color: var(--primary) !important;
+}
+
+.text-secondary {
+  color: var(--secondary) !important;
+}
+
+.btn-primary {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: #fff !important;
+}
+
+.btn-secondary {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: #fff !important;
+  background-color: var(--secondary) !important;
+  border-color: var(--secondary) !important;
+}
+
+a.text-primary {
+  &:focus, &:hover {
+    color: var(--primary) !important;
+  }
+}
+
+nav {
+  .active, .nav-item a:hover {
+    color: #fff !important;
+    background-color: var(--primary) !important;
+  }
+
+  .active, .nav-item a {
+    border-radius: 0.25em !important;
+  }
+
+  .active:hover {
+    color: #fff !important;
+  }
+
+  .nav-item a {
+    background-color: transparent;
+    color: var(--primary);
+    transition: .1s;
+
+    &:hover {
+      transition: .1s;
+    }
+  }
+}
+
+* {
+  font-family: "Baloo Thambi 2",cursive;
+}
+
+#header {
+  width: 100%;
+  background: var(--primary);
+  background: url(../img/wave.svg) center bottom no-repeat;
+  background-size: cover;
+  padding: 100px 0;
+  font-size: 48px;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.text-small {
+  font-size: .75rem;
+}
+
+.text-md {
+  font-size: 1rem;
+}
+
+.text-xl {
+  font-size: 1.5rem;
+}
+
+.text-l {
+  font-size: 1.25rem;
+}
+
+.text-xxl {
+  font-size: 2.5rem;
+}
+
+.btn-secondary {
+  &.focus, &:focus {
+    box-shadow: 0 0 !important;
+  }
+}
+
+.scroll-downs {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 34px;
+  height: 55px;
+}
+
+.mousey {
+  width: 3px;
+  padding: 10px 15px;
+  height: 35px;
+  border: 2px solid #fff;
+  border-radius: 25px;
+  opacity: .75;
+  box-sizing: content-box;
+}
+
+.scroller {
+  width: 3px;
+  height: 10px;
+  border-radius: 25%;
+  background-color: #fff;
+  animation-name: scroll;
+  animation-duration: 2.2s;
+  animation-timing-function: cubic-bezier(0.15, 0.41, 0.69, 0.94);
+  animation-iteration-count: infinite;
+}
+
+.page-item, .page-link {
+  cursor: pointer;
+}
+
+.page-item.active .page-link {
+  z-index: 1;
+  color: #fff !important;
+  border-color: var(--primary);
+}
+
+#service {
+  background-color: var(--light-grey);
+  box-shadow: inset 0 0 12px 0 rgba(0, 0, 0, 0.05);
+}
+
+#counter, .page-item.active .page-link, .table .thead-primary th {
+  background-color: var(--primary);
+}
+
+.counter-count {
+  position: relative;
+  text-align: center;
+}
+
+.bg-secondary {
+  background-color: var(--secondary) !important;
+}
+
+.navbar a {
+  text-transform: capitalize !important;
+}
+
+.headerlabel-big {
+  background-color: var(--primary);
+  color: #fff;
+  padding: 1.25rem 1rem;
+}
+
+.bg-light-grey {
+  background-color: var(--light-grey);
+}
+
+.table .thead-primary th {
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.badge-primary {
+  background-color: var(--primary) !important;
+}
+
+@media screen and (max-width: 800px) {
+  #header {
+    background: url(../img/wave.png) center bottom no-repeat;
+    padding: 3rem 0;
+    font-size: 30px;
+    text-align: center;
+    max-height: none;
+    height: auto;
+  }
+
+  .text-md {
+    font-size: .75rem;
+  }
+
+  #header-bottom {
+    display: none;
+  }
+
+  .nav-item a {
+    margin: .25rem 0 !important;
+    padding-left: .33rem !important;
+    transition: 0s;
+    &:hover {
+      transition: 0s;
+    }
+  }
+}
