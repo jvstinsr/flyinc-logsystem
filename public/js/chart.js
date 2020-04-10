@@ -7,8 +7,8 @@ function getLabels() {
 }
 
 var user = {
-    1 : {'name':'Justin', 'id' : '0001', 'von' : '10', 'bis' : '18'},
-    2 : {'name':'Julian', 'id' : '0002', 'von' : "11", 'bis' : '20'}
+    1: {'name': 'Justin', 'id': '0001', 'von': '10', 'bis': '18'},
+    2: {'name': 'Julian', 'id': '0002', 'von': "11", 'bis': '20'}
 };
 
 
@@ -16,12 +16,20 @@ function returnUserData(member, key) {
     return user[member][key];
 }
 
+function diff(i) {
+    var result = [];
+    for (var x = returnUserData(i, 'von'); x <= returnUserData(i, 'bis'); x++) {
+        result.push(x)
+    }
+    return result;
+}
+
 
 function setData() {
     var data = [];
     for (var i in user) {
         var object = {
-            data : [returnUserData(i, 'von'), 11,12,13,14,15,16,17,18],
+            data: diff(i),
             label: returnUserData(i, 'name'),
             borderColor: getRandomColor(),
             fill: false
@@ -74,6 +82,26 @@ new Chart(document.getElementById("canvas"), {
                     stepSize: 1,
                     // OR //
                     beginAtZero: true   // minimum value will be 0.
+                },
+                scaleLabel: {
+                    display: true,
+                    fontSize: 14,
+                    labelString: "Uhrzeit",
+                }
+            }],
+            xAxes: [{
+                display: true,
+                ticks: {
+                    suggestedMin: 0,    // minimum will be 0, unless there is a lower value.
+                    suggestedMax: 24,
+                    stepSize: 1,
+                    // OR //
+                    beginAtZero: true   // minimum value will be 0.
+                },
+                scaleLabel: {
+                    display: true,
+                    fontSize: 14,
+                    labelString: "Stunden",
                 }
             }]
         }
