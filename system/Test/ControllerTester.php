@@ -60,7 +60,7 @@ use Throwable;
  *       ->withResponse($response)
  *       ->withURI($uri)
  *       ->withBody($body)
- *       ->controller('App\Controllers\Home')
+ *       ->controller('App\Controllers\Dashboard')
  *       ->run('methodName');
  */
 trait ControllerTester

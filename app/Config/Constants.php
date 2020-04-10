@@ -12,6 +12,7 @@
 // existing namespaces of App\* namespaced-classes.
 //
 defined('APP_NAMESPACE') || define('APP_NAMESPACE', 'App');
+defined('DASHBOARD') || define('DASHBOARD', 'dashboard');
 
 /*
 |--------------------------------------------------------------------------
