@@ -21,7 +21,7 @@ class App extends BaseConfig
 	| environments.
 	|
 	*/
-	public $baseURL = 'http://192.168.0.18/flyinc-logsystem/public';
+	public $baseURL = 'http://localhost/flyinc-logsystem/public';
 
 	/*
 	|--------------------------------------------------------------------------
