@@ -1,11 +1,3 @@
-function getLabels() {
-    var labels = [];
-    for (var i = 0; i <= 24; i++) {
-        labels.push(i);
-    }
-    return labels
-}
-
 var user = {
     1: {
         'name': 'Justin',
@@ -37,14 +29,6 @@ function returnUserData(member, key) {
 
 function returnDateData(member, date, start) {
     return user[member][date][start];
-}
-
-function diff(i) {
-    var result = [];
-    for (var x = returnUserData(i, 'von'); x <= returnUserData(i, 'bis'); x++) {
-        result.push(x)
-    }
-    return result;
 }
 
 
@@ -88,7 +72,7 @@ new Chart(document.getElementById("canvas"), {
                     suggestedMin: 5,
                     suggestedMax: 20,
                     stepSize: 1,
-                    beginAtZero: true
+                    beginAtZero: false
                 },
                 scaleLabel: {
                     display: true,
