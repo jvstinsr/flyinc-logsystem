@@ -8,3 +8,12 @@
         CONTENT
     </div>
 </div>
+<?php
+$dates = array();
+for ($i = 7; $i >= 1; $i--) {
+    array_push($dates, date('d.m.Y', strtotime('-' . $i + 1 . ' days')));
+}
+?>
+<script>
+    var dates = <?php echo json_encode($dates); ?>;
+</script>
