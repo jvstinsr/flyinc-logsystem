@@ -2,86 +2,127 @@ var user = {
     1: {
         'name': 'Justin',
         'id': '0001',
-        '05.04.2020': {'von': '11', 'bis': '19'},
-        '06.04.2020': {'von': '8', 'bis': '10'},
-        '07.04.2020': {'von': '10', 'bis': '18'},
-        '08.04.2020': {'von': '9', 'bis': '19'},
-        '09.04.2020': {'von': '8', 'bis': '16'},
-        '10.04.2020': {'von': '8', 'bis': '17'},
-        '11.04.2020': {'von': '9', 'bis': '13'}
+        'datum': {
+            '08.04.2020': [11, 18],
+            '09.04.2020': [12, 20],
+            '10.04.2020': [14, 17],
+            '11.04.2020': [8, 19],
+            '12.04.2020': [18, 22]
+        }
     },
     2: {
         'name': 'Julian',
         'id': '0002',
-        '05.04.2020': {'von': '13', 'bis': '19'},
-        '06.04.2020': {'von': '8', 'bis': '14'},
-        '07.04.2020': {'von': '11', 'bis': '17'},
-        '08.04.2020': {'von': '19', 'bis': '20'},
-        '09.04.2020': {'von': '9', 'bis': '20'},
-        '10.04.2020': {'von': '12', 'bis': '15'},
-        '11.04.2020': {'von': '9', 'bis': '13'}
+        'datum': {
+            '08.04.2020': [12, 18],
+            '09.04.2020': [13, 18],
+            '10.04.2020': [17, 18],
+            '11.04.2020': [8, 18],
+            '12.04.2020': [9, 18]
+        }
     }
 };
+
+
+function getDate() {
+    var date = [];
+    moment.locale('de');
+    for (var i = 4; i >= 0; i--) {
+        var dateFrom = moment().subtract(i, 'd').format('DD.MM.YYYY');
+        date.push(dateFrom);
+    }
+    return date;
+}
+
 
 function returnUserData(member, key) {
     return user[member][key];
 }
 
-function returnDateData(member, date, start) {
-    return user[member][date][start];
-}
-
-
-function fillDates(member) {
-    var newDates = [];
-    for (var i = 0; i < dates.length; i++) {
-        newDates.push(returnDateData(member, dates[i], 'von'), returnDateData(member, dates[i], 'bis'))
+function getUserDate(i) {
+    var date = [];
+    for (var x in 'datum') {
+        date.push(user[i]['datum'][getDate()[x]])
     }
-    return newDates;
+    return date;
 }
 
-
-function setData() {
+function sendData() {
     var data = [];
     for (var i in user) {
         var object = {
-            data: fillDates(i),
-            label: returnUserData(i, 'name'),
+            label: returnUserData(i, 'name') + "(" + returnUserData(i, 'id') + ")",
+            data: getUserDate(i),
             borderColor: color = getRandomColor(),
             backgroundColor: hexToRGB(color),
-            fill: true
+            borderWidth: 1
         };
         data.push(object);
     }
-
     return data;
 }
 
+var result;
+var hourStr;
 
-new Chart(document.getElementById("canvas"), {
-    type: 'line',
+var ctx = document.getElementById('canvas').getContext('2d');
+new Chart(ctx, {
+    type: 'bar',
     data: {
-        labels: dates,
-        datasets: setData()
+        labels: getDate(),
+        datasets:
+            sendData()
+        /*{
+        label: 'Julian',
+        data: [[10, 18], [8,15]],
+        borderColor: color = getRandomColor(),
+        backgroundColor: hexToRGB(color),
+        borderWidth: 1
+    }, {
+        label: 'Justin',
+        data: [[8, 20], [13,19]],
+        borderColor: color = getRandomColor(),
+        backgroundColor: hexToRGB(color),
+        borderWidth: 1
+    }*/
     },
     options: {
+        spanGaps: true,
         scales: {
             yAxes: [{
-                display: true,
                 ticks: {
-                    suggestedMin: 5,
-                    suggestedMax: 20,
+                    min: 0,
+                    max: 24,
                     stepSize: 1,
-                    beginAtZero: false
-                },
-                scaleLabel: {
-                    display: true,
-                    fontSize: 14,
-                    labelString: "Uhrzeit",
+                    beginAtZero: true
                 }
             }],
-        }
-    }
+        },
+        tooltips: {
+            enabled: true,
+            split: true,
+            mode: 'single',
+            callbacks: {
+                label: function (tooltipItem, data) {
+                    var labels = tooltipItem.yLabel;
+                    var diff = labels.replace('[', '').replace(']', '');
+                    var diff = diff.split(',');
+                    result = diff[1] - diff[0];
+                    hourStr;
+                    if (result > 1) {
+                        hourStr = " Stunden";
+                    } else {
+                        hourStr = " Stunde";
+                    }
+                    return "Von: " + diff[0] + " Uhr bis: " + diff[1] + " Uhr ";
+                },
+                footer: function() {
+                    return  result + hourStr;
+                },
+            }
+        },
+    },
+
 });
 
 function getRandomColor() {
@@ -159,8 +200,3 @@ function hexToRGB(hex) {
     }
     return "rgba(" + r + "," + g + "," + b + "," + ".3)";
 }
-
-
-//TODO: auslagern
-
-
