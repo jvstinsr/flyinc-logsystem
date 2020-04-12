@@ -3,26 +3,39 @@ var user = {
         'name': 'Justin',
         'id': '0001',
         'datum': {
-            '08.04.2020': [11, 18],
-            '09.04.2020': [12, 20],
-            '10.04.2020': [14, 17],
-            '11.04.2020': [8, 19],
-            '12.04.2020': [18, 22]
+            '08.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '09.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '10.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '11.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '12.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))]
         }
     },
     2: {
         'name': 'Julian',
         'id': '0002',
         'datum': {
-            '08.04.2020': [12, 18],
-            '09.04.2020': [13, 18],
-            '10.04.2020': [17, 18],
-            '11.04.2020': [8, 18],
-            '12.04.2020': [9, 18]
+            '08.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '09.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '10.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '11.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '12.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))]
         }
     }
 };
 
+function convertToHHMM(info) {
+    var hrs = parseInt(Number(info));
+    var min = Math.round((Number(info)-hrs) * 60);
+    return hrs+':'+min;
+}
+
+
+function timeToDecimal(t) {
+    var arr = t.split(':');
+    var dec = parseInt((arr[1] / 6) * 10, 10);
+
+    return parseFloat(parseInt(arr[0], 10) + '.' + (dec < 10 ? '0' : '') + dec);
+}
 
 function getDate() {
     var date = [];
@@ -34,6 +47,9 @@ function getDate() {
     return date;
 }
 
+function randomInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 function returnUserData(member, key) {
     return user[member][key];
@@ -62,41 +78,58 @@ function sendData() {
     return data;
 }
 
+function formatTime(secs) {
+    var hours = Math.floor(secs / (60 * 60));
+
+    var divisor_for_minutes = secs % (60 * 60);
+    var minutes = Math.floor(divisor_for_minutes / 60);
+
+    var divisor_for_seconds = divisor_for_minutes % 60;
+    var seconds = Math.ceil(divisor_for_seconds);
+
+    return hours + ":" + minutes;
+}
+
 var result;
 var hourStr;
-
 var ctx = document.getElementById('canvas').getContext('2d');
 new Chart(ctx, {
     type: 'bar',
     data: {
         labels: getDate(),
-        datasets:
-            sendData()
-        /*{
-        label: 'Julian',
-        data: [[10, 18], [8,15]],
-        borderColor: color = getRandomColor(),
-        backgroundColor: hexToRGB(color),
-        borderWidth: 1
-    }, {
-        label: 'Justin',
-        data: [[8, 20], [13,19]],
-        borderColor: color = getRandomColor(),
-        backgroundColor: hexToRGB(color),
-        borderWidth: 1
-    }*/
+        datasets: sendData()
     },
     options: {
         spanGaps: true,
         scales: {
             yAxes: [{
                 ticks: {
-                    min: 0,
-                    max: 24,
-                    stepSize: 1,
-                    beginAtZero: true
+                    stepSize: 2,
+                    min: 6,
+                    max: 22,
+                    beginAtZero: true,
+                    callback: function (label) {
+                        moment.locale('de');
+                        if (label < 10) {
+                            return "0" + label + ":00";
+                        } else {
+                            return label + ":00";
+                        }
+                    }
+                },
+                scaleLabel: {
+                    display: true,
+                    fontSize: 14,
+                    labelString: 'Arbeitsstunden'
                 }
             }],
+            xAxes: [{
+                scaleLabel: {
+                    display: true,
+                    fontSize: 14,
+                    labelString: 'Tage'
+                },
+            }]
         },
         tooltips: {
             enabled: true,
@@ -108,6 +141,8 @@ new Chart(ctx, {
                     var diff = labels.replace('[', '').replace(']', '');
                     var diff = diff.split(',');
                     result = diff[1] - diff[0];
+                    diff[0] = convertToHHMM(diff[0]);
+                    diff[1] = convertToHHMM(diff[1]);
                     hourStr;
                     if (result > 1) {
                         hourStr = " Stunden";
@@ -116,13 +151,12 @@ new Chart(ctx, {
                     }
                     return "Von: " + diff[0] + " Uhr bis: " + diff[1] + " Uhr ";
                 },
-                footer: function() {
-                    return  result + hourStr;
+                footer: function () {
+                    return convertToHHMM(result) + hourStr;
                 },
             }
         },
-    },
-
+    }
 });
 
 function getRandomColor() {

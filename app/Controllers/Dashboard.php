@@ -19,7 +19,7 @@ class Dashboard extends BaseController
 
         $data = [
             'currentDay' => strftime('%A, %d.%m.%Y'),
-            'lastWeekDay' => strftime('%A, %d.%m.%Y', strtotime('-6 days'))
+            'lastWeekDay' => strftime('%A, %d.%m.%Y', strtotime('-4 days'))
         ];
 
         echo view('header', $title);
