@@ -1,4 +1,6 @@
-var user = {
+let result;
+let hourStr;
+let user = {
     1: {
         'name': 'Justin',
         'id': '0001',
@@ -23,76 +25,7 @@ var user = {
     }
 };
 
-function convertToHHMM(info) {
-    var hrs = parseInt(Number(info));
-    var min = Math.round((Number(info)-hrs) * 60);
-    return hrs+':'+min;
-}
-
-
-function timeToDecimal(t) {
-    var arr = t.split(':');
-    var dec = parseInt((arr[1] / 6) * 10, 10);
-
-    return parseFloat(parseInt(arr[0], 10) + '.' + (dec < 10 ? '0' : '') + dec);
-}
-
-function getDate() {
-    var date = [];
-    moment.locale('de');
-    for (var i = 4; i >= 0; i--) {
-        var dateFrom = moment().subtract(i, 'd').format('DD.MM.YYYY');
-        date.push(dateFrom);
-    }
-    return date;
-}
-
-function randomInteger(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function returnUserData(member, key) {
-    return user[member][key];
-}
-
-function getUserDate(i) {
-    var date = [];
-    for (var x in 'datum') {
-        date.push(user[i]['datum'][getDate()[x]])
-    }
-    return date;
-}
-
-function sendData() {
-    var data = [];
-    for (var i in user) {
-        var object = {
-            label: returnUserData(i, 'name') + "(" + returnUserData(i, 'id') + ")",
-            data: getUserDate(i),
-            borderColor: color = getRandomColor(),
-            backgroundColor: hexToRGB(color),
-            borderWidth: 1
-        };
-        data.push(object);
-    }
-    return data;
-}
-
-function formatTime(secs) {
-    var hours = Math.floor(secs / (60 * 60));
-
-    var divisor_for_minutes = secs % (60 * 60);
-    var minutes = Math.floor(divisor_for_minutes / 60);
-
-    var divisor_for_seconds = divisor_for_minutes % 60;
-    var seconds = Math.ceil(divisor_for_seconds);
-
-    return hours + ":" + minutes;
-}
-
-var result;
-var hourStr;
-var ctx = document.getElementById('canvas').getContext('2d');
+const ctx = document.getElementById('canvas').getContext('2d');
 new Chart(ctx, {
     type: 'bar',
     data: {
@@ -110,11 +43,7 @@ new Chart(ctx, {
                     beginAtZero: true,
                     callback: function (label) {
                         moment.locale('de');
-                        if (label < 10) {
-                            return "0" + label + ":00";
-                        } else {
-                            return label + ":00";
-                        }
+                        return label < 10 ? "0" + label + ":00" : label + ":00";
                     }
                 },
                 scaleLabel: {
@@ -136,31 +65,83 @@ new Chart(ctx, {
             split: true,
             mode: 'single',
             callbacks: {
-                label: function (tooltipItem, data) {
-                    var labels = tooltipItem.yLabel;
-                    var diff = labels.replace('[', '').replace(']', '');
-                    var diff = diff.split(',');
+                label: function (tooltipItem) {
+                    let labels = tooltipItem.yLabel;
+                    let diff = labels.replace('[', '').replace(']', '');
+                    diff = diff.split(',');
                     result = diff[1] - diff[0];
-                    diff[0] = convertToHHMM(diff[0]);
-                    diff[1] = convertToHHMM(diff[1]);
-                    hourStr;
-                    if (result > 1) {
-                        hourStr = " Stunden";
-                    } else {
-                        hourStr = " Stunde";
-                    }
+                    diff[0] = decimalToTime(diff[0]);
+                    diff[1] = decimalToTime(diff[1]);
+
+                    hourStr = result > 1 ? " Stunden" : " Stunde";
                     return "Von: " + diff[0] + " Uhr bis: " + diff[1] + " Uhr ";
                 },
                 footer: function () {
-                    return convertToHHMM(result) + hourStr;
+                    return decimalToTime(result) + hourStr;
                 },
             }
         },
     }
 });
 
+function randomInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function timeToDecimal(t) {
+    const arr = t.split(':');
+    const dec = parseInt((arr[1] / 6) * 10, 10);
+
+    return parseFloat(parseInt(arr[0], 10) + '.' + (dec < 10 ? '0' : '') + dec);
+}
+
+function decimalToTime(info) {
+    const hrs = parseInt(Number(info));
+    const min = Math.round((Number(info) - hrs) * 60);
+    return hrs + ':' + min;
+}
+
+
+function getDate() {
+    const date = [];
+    moment.locale('de');
+    for (let i = 4; i >= 0; i--) {
+        const dateFrom = moment().subtract(i, 'd').format('DD.MM.YYYY');
+        date.push(dateFrom);
+    }
+    return date;
+}
+
+
+function getUserDate(i) {
+    const date = [];
+    for (const x in 'datum') {
+        date.push(user[i]['datum'][getDate()[x]])
+    }
+    return date;
+}
+
+function returnUserData(member, key) {
+    return user[member][key];
+}
+
+function sendData() {
+    const data = [];
+    for (const i in user) {
+        const object = {
+            label: returnUserData(i, 'name') + " (" + returnUserData(i, 'id') + ")",
+            data: getUserDate(i),
+            borderColor: color = getRandomColor(),
+            backgroundColor: hexToRGB(color),
+            borderWidth: 1
+        };
+        data.push(object);
+    }
+    return data;
+}
+
 function getRandomColor() {
-    var colors = [
+    const colors = [
         "#63b598", "#ce7d78", "#ea9e70", "#a48a9e", "#c6e1e8", "#648177", "#0d5ac1",
         "#f205e6", "#1c0365", "#14a9ad", "#4ca2f9", "#a4e43f", "#d298e2", "#6119d0",
         "#d2737d", "#c0a43c", "#f2510e", "#651be6", "#79806e", "#61da5e", "#cd2f00",
@@ -205,14 +186,13 @@ function getRandomColor() {
 }
 
 function hexToRGB(hex) {
-    "use strict";
     if (hex.charAt(0) === '#') {
         hex = hex.substr(1);
     }
     if ((hex.length < 2) || (hex.length > 6)) {
         return false;
     }
-    var values = hex.split(''),
+    let values = hex.split(''),
         r,
         g,
         b;
