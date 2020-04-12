@@ -5,22 +5,22 @@ let user = {
         'name': 'Justin',
         'id': '0001',
         'datum': {
-            '08.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
             '09.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
             '10.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
             '11.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
-            '12.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))]
+            '12.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '13.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))]
         }
     },
     2: {
         'name': 'Julian',
         'id': '0002',
         'datum': {
-            '08.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
             '09.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
             '10.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
             '11.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
-            '12.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))]
+            '12.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '13.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))]
         }
     }
 };
@@ -73,16 +73,30 @@ new Chart(ctx, {
                     diff[0] = decimalToTime(diff[0]);
                     diff[1] = decimalToTime(diff[1]);
 
-                    hourStr = result > 1 ? " Stunden" : " Stunde";
                     return "Von: " + diff[0] + " Uhr bis: " + diff[1] + " Uhr ";
                 },
-                footer: function () {
-                    return decimalToTime(result) + hourStr;
+                afterLabel: function () {
+                    return "Arbeitszeit: " + workTime(result);
                 },
             }
         },
     }
 });
+
+function sendData() {
+    const data = [];
+    for (const i in user) {
+        const object = {
+            label: returnUserData(i, 'name') + " (" + returnUserData(i, 'id') + ")",
+            data: getUserDate(i),
+            borderColor: color = getRandomColor(),
+            backgroundColor: hexToRGB(color),
+            borderWidth: 1,
+        };
+        data.push(object);
+    }
+    return data;
+}
 
 function randomInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -96,9 +110,17 @@ function timeToDecimal(t) {
 }
 
 function decimalToTime(info) {
+    let hrs = parseInt(Number(info));
+    let min = Math.round((Number(info) - hrs) * 60);
+    hrs = hrs <= 9 ? "0" + hrs : hrs;
+    min = min <= 9 ? "0" + min : min;
+    return hrs + ':' + min;
+}
+
+function workTime(info) {
     const hrs = parseInt(Number(info));
     const min = Math.round((Number(info) - hrs) * 60);
-    return hrs + ':' + min;
+    return hrs + ' Std. ' + min + ' Min.';
 }
 
 
@@ -123,21 +145,6 @@ function getUserDate(i) {
 
 function returnUserData(member, key) {
     return user[member][key];
-}
-
-function sendData() {
-    const data = [];
-    for (const i in user) {
-        const object = {
-            label: returnUserData(i, 'name') + " (" + returnUserData(i, 'id') + ")",
-            data: getUserDate(i),
-            borderColor: color = getRandomColor(),
-            backgroundColor: hexToRGB(color),
-            borderWidth: 1
-        };
-        data.push(object);
-    }
-    return data;
 }
 
 function getRandomColor() {
