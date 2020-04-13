@@ -1,5 +1,4 @@
 let result;
-let hourStr;
 let user = {
     1: {
         'name': 'Justin',
@@ -102,7 +101,7 @@ let user = {
     },
 };
 
-let dateDB = ['1582704000', '1582790400', '1582876800', '1583308800', '1586761200'];
+//let dateDB = ['1582704000', '1582704000', '1582876800', '1583308800', '1586761200'];
 
 const ctx = document.getElementById('canvas').getContext('2d');
 new Chart(ctx, {
@@ -159,6 +158,12 @@ new Chart(ctx, {
                 },
             }
         },
+        legend: {
+            display: true,
+            labels: {
+                fontSize: 11,
+            }
+        }
     }
 });
 
@@ -222,7 +227,6 @@ function getLabels() {
         const dateFrom = moment.unix(dateDB[i]).format('DD.MM.YYYY (dd)')
         date.push(dateFrom);
     }
-
     return date;
 }
 
