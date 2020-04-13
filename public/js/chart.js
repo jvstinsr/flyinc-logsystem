@@ -5,31 +5,110 @@ let user = {
         'name': 'Justin',
         'id': '0001',
         'datum': {
-            '09.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
-            '10.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
-            '11.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
-            '12.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
-            '13.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))]
+            '1582704000': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1582790400': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1582876800': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1583308800': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1586761200': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))]
         }
     },
     2: {
         'name': 'Julian',
         'id': '0002',
         'datum': {
-            '09.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
-            '10.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
-            '11.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
-            '12.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
-            '13.04.2020': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))]
+            '1582704000': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1582790400': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1582876800': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1583308800': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1586761200': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))]
         }
-    }
+    },
+    3: {
+        'name': 'Justin',
+        'id': '0003',
+        'datum': {
+            '1582704000': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1582790400': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1582876800': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1583308800': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1586761200': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))]
+        }
+    },
+    4: {
+        'name': 'Justin',
+        'id': '0004',
+        'datum': {
+            '1582704000': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1582790400': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1582876800': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1583308800': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1586761200': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))]
+        }
+    },
+    5: {
+        'name': 'Justin',
+        'id': '0005',
+        'datum': {
+            '1582704000': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1582790400': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1582876800': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1583308800': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1586761200': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))]
+        }
+    },
+    6: {
+        'name': 'Justin',
+        'id': '0006',
+        'datum': {
+            '1582704000': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1582790400': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1582876800': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1583308800': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1586761200': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))]
+        }
+    },
+    7: {
+        'name': 'Justin',
+        'id': '0007',
+        'datum': {
+            '1582704000': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1582790400': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1582876800': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1583308800': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1586761200': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))]
+        }
+    },
+    8: {
+        'name': 'Justin',
+        'id': '0008',
+        'datum': {
+            '1582704000': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1582790400': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1582876800': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1583308800': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1586761200': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))]
+        }
+    },
+    9: {
+        'name': 'Justin',
+        'id': '0009',
+        'datum': {
+            '1582704000': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1582790400': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1582876800': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1583308800': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))],
+            '1586761200': [timeToDecimal(randomInteger(7, 11) + ":" + randomInteger(0, 59)), timeToDecimal(randomInteger(12, 21) + ":" + randomInteger(0, 59))]
+        }
+    },
 };
+
+let dateDB = ['1582704000', '1582790400', '1582876800', '1583308800', '1586761200'];
 
 const ctx = document.getElementById('canvas').getContext('2d');
 new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: getDate(),
+        labels: getLabels(),
         datasets: sendData()
     },
     options: {
@@ -127,13 +206,25 @@ function workTime(info) {
 function getDate() {
     const date = [];
     moment.locale('de');
-    for (let i = 4; i >= 0; i--) {
-        const dateFrom = moment().subtract(i, 'd').format('DD.MM.YYYY');
+
+    for (let i in dateDB) {
+        const dateFrom = dateDB[i]
         date.push(dateFrom);
     }
     return date;
 }
 
+function getLabels() {
+    const date = [];
+    moment.locale('de');
+
+    for (let i in dateDB) {
+        const dateFrom = moment.unix(dateDB[i]).format('DD.MM.YYYY (dd)')
+        date.push(dateFrom);
+    }
+
+    return date;
+}
 
 function getUserDate(i) {
     const date = [];
